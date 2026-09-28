@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>南半球版プロファイル鑑定</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<meta name="robots" content="noindex,nofollow,noarchive"></head>
+<body>
+    <div class="container">
+        <h1>南半球版プロファイル鑑定</h1>
+        
+        <!-- 入力欄（常に表示） -->
+        <div class="input-form">
+            <div class="form-group">
+                <label for="birth_year">生年月日:</label>
+                <select id="birth_year"></select>年
+                <select id="birth_month"></select>月
+                <select id="birth_day"></select>日
+            </div>
+            
+            <div class="form-group">
+                <label>性別:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="sex" value="1" checked> 男性
+                    </label>
+                    <label>
+                        <input type="radio" name="sex" value="2"> 女性
+                    </label>
+                </div>
+            </div>
+            
+            <button onclick="calculateMeishiki()">命式を計算</button>
+        </div>
+        
+        <!-- 2x2グリッド + 下部中央レイアウトのコンテナ -->
+        <div class="grid-layout" id="resultsContainer" style="display: none;">
+            <!-- 2x2グリッド部分 -->
+            <div class="grid-container">
+                <!-- ①命式 -->
+                <div class="meishiki-container grid-item">
+                    <h2 id="meishikiTitle">①命式</h2>
+                    <div id="basicInfo"></div>
+                    <table id="meishikiTable">
+                        <tr id="tenkanRow"></tr>
+                        <tr id="chishiRow"></tr>
+                        <tr id="kanshiNumRow"></tr>
+                        <tr id="zokanRow"></tr>
+                        <tr id="tsuhenRow"></tr>
+                        <tr id="zokanTsuhenRow"></tr>
+                        <tr id="junniRow"></tr>
+                        <!-- 天中殺行などもここに追加される -->
+                    </table>
+                    <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+                </div>
+                
+                <!-- ②大運 -->
+                <div id="daiunContainer" class="daiun-container grid-item">
+                    <h2>②大運</h2>
+                    <div id="daiunTable"></div>
+                    <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+                </div>
+                
+                <!-- ③ソシアルメーター -->
+                <div class="meishiki-container grid-item">
+                    <h2>③ソシアルメーター</h2>
+                    <canvas id="tsuhenChart" width="600" height="600"></canvas>
+                    <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+                </div>
+                
+                <!-- ④ライフエリアマップ -->
+                <div id="triangleContainer" class="daiun-container grid-item">
+                    <h2>④ライフエリアマップ</h2>
+                    <canvas id="triangleCanvas" width="600" height="600"></canvas>
+                    <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+                </div>
+                
+            </div>
+            
+            <!-- ⑤行動キーワード（下部中央） -->
+            <div id="actionKeywordsContainer" class="content-box bottom-center" style="display: none;">
+                <h2>⑤行動キーワード</h2>
+                <div class="action-keywords-table-container">
+                    <table id="actionKeywordsTable">
+                        <thead>
+                            <tr>
+                                <th class="corner-cell">
+                                    <div class="corner-content">
+                                        <span class="corner-top">時</span>
+                                        <span class="corner-bottom">あなた</span>
+                                    </div>
+                                </th>
+                                <th class="wood-header">木</th>
+                                <th class="fire-header">火</th>
+                                <th class="earth-header">土</th>
+                                <th class="metal-header">金</th>
+                                <th class="water-header">水</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="wood-header">木</th>
+                                <td>自立<br>独立</td>
+                                <td>未来<br>子供<br>健康</td>
+                                <td>愛・財<br>人脈</td>
+                                <td>仕事</td>
+                                <td>知識<br>親<br>変化</td>
+                            </tr>
+                            <tr>
+                                <th class="fire-header">火</th>
+                                <td>知識<br>親<br>変化</td>
+                                <td>自立<br>独立</td>
+                                <td>未来<br>子供<br>健康</td>
+                                <td>愛・財<br>人脈</td>
+                                <td>仕事</td>
+                            </tr>
+                            <tr>
+                                <th class="earth-header">土</th>
+                                <td>仕事</td>
+                                <td>知識<br>親<br>変化</td>
+                                <td>自立<br>独立</td>
+                                <td>未来<br>子供<br>健康</td>
+                                <td>愛・財<br>人脈</td>
+                            </tr>
+                            <tr>
+                                <th class="metal-header">金</th>
+                                <td>愛・財<br>人脈</td>
+                                <td>仕事</td>
+                                <td>知識<br>親<br>変化</td>
+                                <td>自立<br>独立</td>
+                                <td>未来<br>子供<br>健康</td>
+                            </tr>
+                            <tr>
+                                <th class="water-header">水</th>
+                                <td>未来<br>子供<br>健康</td>
+                                <td>愛・財<br>人脈</td>
+                                <td>仕事</td>
+                                <td>知識<br>親<br>変化</td>
+                                <td>自立<br>独立</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+            </div>
+        </div>
+        
+        <!-- 印刷ボタンを削除 -->
+    </div>
+
+    <script>
+        // タイムスタンプを追加してキャッシュを回避
+        const timestamp = new Date().getTime();
+        document.write(`<script src="kanshi_data.js?v=${timestamp}"><\/script>`);
+        document.write(`<script src="meishiki.js?v=${timestamp}"><\/script>`);
+    </script>
+    <script>
+    // 年・月・日プルダウン生成
+    document.addEventListener('DOMContentLoaded', function() {
+        const yearSelect = document.getElementById('birth_year');
+        const monthSelect = document.getElementById('birth_month');
+        const daySelect = document.getElementById('birth_day');
+        const now = new Date();
+        const startYear = 1901;
+        const endYear = now.getFullYear() + 30; // 現在の年から30年後まで
+        for (let y = startYear; y <= endYear; y++) {
+            const opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            if (y === 1980) opt.selected = true;
+            yearSelect.appendChild(opt);
+        }
+        for (let m = 1; m <= 12; m++) {
+            const opt = document.createElement('option');
+            opt.value = m;
+            opt.textContent = m;
+            monthSelect.appendChild(opt);
+        }
+        function updateDays() {
+            const y = parseInt(yearSelect.value);
+            const m = parseInt(monthSelect.value);
+            const lastDay = new Date(y, m, 0).getDate();
+            daySelect.innerHTML = '';
+            for (let d = 1; d <= lastDay; d++) {
+                const opt = document.createElement('option');
+                opt.value = d;
+                opt.textContent = d;
+                daySelect.appendChild(opt);
+            }
+        }
+        monthSelect.addEventListener('change', updateDays);
+        yearSelect.addEventListener('change', updateDays);
+        updateDays();
+    });
+    </script>
+    <script>
+    // calculateMeishiki修正版: parseJSTDateを使わずDateで生成
+    function calculateMeishiki() {
+        const year = document.getElementById('birth_year').value;
+        const month = document.getElementById('birth_month').value;
+        const day = document.getElementById('birth_day').value;
+        const sex = document.querySelector('input[name="sex"]:checked').value;
+
+        if (!year || !month || !day) {
+            alert('生年月日を入力してください。');
+            return;
+        }
+
+        // 結果コンテナを表示
+        const resultsContainer = document.getElementById('resultsContainer');
+        if (resultsContainer) {
+            resultsContainer.style.display = 'flex';
+            resultsContainer.classList.add('show');
+        }
+
+        // 印刷ボタン関連のコードを削除
+
+        // 日付＋時刻を統合（UTCで生成してタイムゾーンの影響を避ける）
+        let birthDateTime = new Date(Date.UTC(year, month - 1, day));
+
+        const meishiki = new Meishiki(birthDateTime, null, sex);
+        
+        // ①命式の表示（完全に独立）
+        try {
+            meishiki.displayMeishiki();
+            meishiki.buildMeishiki();
+        } catch (error) {
+        }
+        
+        // ②大運の表示（完全に独立）
+        try {
+            displayDaiunTable(meishiki, new Date(birthDateTime), parseInt(sex));
+        } catch (error) {
+        }
+        
+        // ③ソシアルメーターの表示（完全に独立）
+        try {
+            const tsuhenContainer = document.querySelectorAll('.meishiki-container')[1];
+            if (tsuhenContainer) {
+                tsuhenContainer.style.display = 'block';
+                // ソシアルメーターのチャートを描画
+                drawTsuhenChart(meishiki);
+            }
+        } catch (error) {
+        }
+        
+        // ④ライフエリアマップの表示（完全に独立）
+        try {
+            const triangleContainer = document.querySelectorAll('.daiun-container')[1];
+            if (triangleContainer) {
+                triangleContainer.style.display = 'block';
+                // ライフエリアマップの三角形を描画
+                drawKanshiTriangle(meishiki);
+            }
+        } catch (error) {
+        }
+        
+        // 干支三角形は④ライフエリアマップで描画済み
+        
+        // ⑤行動キーワードの表示（完全に独立）
+        try {
+            const actionKeywordsContainer = document.getElementById('actionKeywordsContainer');
+            if (actionKeywordsContainer) {
+                actionKeywordsContainer.style.display = 'block';
+            }
+        } catch (error) {
+        }
+    }
+    
+
+    
+    // PDF生成機能
+    function cloneReportSection(source) {
+        const clone = source.cloneNode(true);
+        source.querySelectorAll('canvas').forEach((canvas, index) => {
+            const image = document.createElement('img');
+            image.src = canvas.toDataURL('image/png');
+            image.style.cssText = 'display:block;width:100%;max-width:450px;height:auto;margin:0 auto;';
+            clone.querySelectorAll('canvas')[0].replaceWith(image);
+        });
+        clone.removeAttribute('id');
+        clone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+        return clone;
+    }
+    async function generatePDF() {
+        try {
+            // 印刷ボタン関連のコードを削除
+            
+            // プレビュー表示用のモーダルを作成
+            const previewModal = document.createElement('div');
+            previewModal.id = 'previewModal';
+            previewModal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 10000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                box-sizing: border-box;
+            `;
+            
+            // プレビューコンテンツ
+            const previewContent = document.createElement('div');
+            previewContent.style.cssText = `
+                background: white;
+                border-radius: 10px;
+                padding: 20px;
+                max-width: 95%;
+                max-height: 95%;
+                overflow: auto;
+                position: relative;
+            `;
+            
+            // プレビューヘッダー
+            const previewHeader = document.createElement('div');
+            previewHeader.style.cssText = `
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #243673;
+            `;
+            previewHeader.innerHTML = `
+                <h2 style="margin: 0; color: #243673;">鑑定書プレビュー</h2>
+                <button id="closePreview" style="background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">✕ 閉じる</button>
+            `;
+            
+            // 閉じるボタンのイベント
+            previewHeader.querySelector('#closePreview').onclick = () => {
+                document.body.removeChild(previewModal);
+                // 印刷ボタン関連のコードを削除
+            };
+            
+            previewContent.appendChild(previewHeader);
+            
+            // 縦2ページレイアウトのコンテナを作成
+            const pdfContainer = document.createElement('div');
+            pdfContainer.id = 'pdfContainer';
+            pdfContainer.style.cssText = `
+                width: 210mm;
+                background: white;
+                padding: 10mm;
+                font-family: 'Arial', sans-serif;
+                font-size: 10pt;
+                line-height: 1.2;
+                color: black;
+                box-sizing: border-box;
+                transform: scale(0.35);
+                transform-origin: top left;
+                margin: 0 auto;
+            `;
+            
+            // 1ページ目（①命式、②大運、③ソシアルメーター）
+            const page1 = document.createElement('div');
+            page1.style.cssText = `
+                width: 190mm;
+                min-height: 270mm;
+                background: white;
+                padding: 8mm;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                margin-bottom: 15mm;
+                page-break-after: always;
+            `;
+            
+            // 1ページ目ヘッダー
+            const page1Header = document.createElement('div');
+            page1Header.innerHTML = `
+                <h1 style="text-align: center; color: #243673; margin-bottom: 15px; font-size: 20pt;">
+                    南半球版プロファイル鑑定書
+                </h1>
+                <div style="text-align: center; margin-bottom: 20px; font-size: 12pt;">
+                    生年月日: ${document.getElementById('birth_year').value}年${document.getElementById('birth_month').value}月${document.getElementById('birth_day').value}日
+                    ${document.querySelector('input[name="sex"]:checked').value === '1' ? '男性' : '女性'}
+                </div>
+                <hr style="border: 1px solid #243673; margin: 15px 0;">
+            `;
+            page1.appendChild(page1Header);
+            
+            // ①命式表を1ページ目に追加
+            const meishikiContainer = document.querySelector('.meishiki-container');
+            if (meishikiContainer) {
+                const meishikiClone = meishikiContainer.cloneNode(true);
+                meishikiClone.style.cssText = 'margin-bottom: 15px;';
+                // 命式表のタイトルを変更
+                const meishikiTitle = meishikiClone.querySelector('h2');
+                if (meishikiTitle) {
+                    meishikiTitle.textContent = '①命式';
+                    meishikiTitle.style.fontSize = '14pt';
+                }
+                page1.appendChild(meishikiClone);
+            }
+            
+            // ②大運表を1ページ目に追加
+            const daiunContainer = document.querySelector('.daiun-container');
+            if (daiunContainer) {
+                const daiunClone = daiunContainer.cloneNode(true);
+                daiunClone.style.cssText = 'margin-bottom: 15px;';
+                // 大運表のタイトルを追加
+                const daiunTitle = document.createElement('h2');
+                daiunTitle.textContent = '②人生プログラム';
+                daiunTitle.style.cssText = 'font-size: 14pt; color: #243673; margin-bottom: 10px;';
+                daiunClone.insertBefore(daiunTitle, daiunClone.firstChild);
+                page1.appendChild(daiunClone);
+            }
+            
+            // ③ソシアルメーターを1ページ目に追加
+            const tsuhenContainer = document.getElementById('tsuhenChart').parentElement;
+            if (tsuhenContainer) {
+                const tsuhenTitle = document.createElement('h2');
+                tsuhenTitle.textContent = '③ソシアルメーター';
+                tsuhenTitle.style.cssText = 'font-size: 14pt; color: #243673; margin-bottom: 10px;';
+                page1.appendChild(tsuhenTitle);
+                
+                // ③ソシアルメーターをそのままコピー
+                const tsuhenClone = cloneReportSection(tsuhenContainer);
+                tsuhenClone.style.cssText = 'margin-bottom: 15px;';
+                
+                // キャンバスが正しくコピーされているか確認
+                const canvas = tsuhenClone.querySelector('canvas');
+                if (canvas) {
+                    canvas.style.cssText = 'width: 100%; max-width: 200px; height: auto; display: block; margin: 0 auto;';
+                }
+                
+                page1.appendChild(tsuhenClone);
+            }
+            
+            // 2ページ目（④ライフエリアマップ、⑤行動キーワード）
+            const page2 = document.createElement('div');
+            page2.style.cssText = `
+                width: 190mm;
+                min-height: 270mm;
+                background: white;
+                padding: 8mm;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                page-break-before: always;
+            `;
+            
+            // ④ライフエリアマップを2ページ目に追加
+            const triangleContainer = document.getElementById('triangleContainer');
+            if (triangleContainer) {
+                const triangleTitle = document.createElement('h2');
+                triangleTitle.textContent = '④ライフエリアマップ';
+                triangleTitle.style.cssText = 'font-size: 14pt; color: #243673; margin-bottom: 10px;';
+                page2.appendChild(triangleTitle);
+                
+                // 三角形キャンバスを直接コピー
+                const triangleClone = cloneReportSection(triangleContainer);
+                triangleClone.style.cssText = 'margin-bottom: 15px;';
+                page2.appendChild(triangleClone);
+            }
+            
+            // ⑤行動キーワード表を2ページ目に追加
+            const actionKeywordsContainer = document.getElementById('actionKeywordsContainer');
+            if (actionKeywordsContainer) {
+                const actionKeywordsClone = actionKeywordsContainer.cloneNode(true);
+                actionKeywordsClone.style.cssText = 'margin-top: 20px;';
+                // 行動キーワード表のタイトルを変更
+                const actionKeywordsTitle = actionKeywordsClone.querySelector('h2');
+                if (actionKeywordsTitle) {
+                    actionKeywordsTitle.textContent = '⑤行動キーワード';
+                    actionKeywordsTitle.style.fontSize = '14pt';
+                }
+                page2.appendChild(actionKeywordsClone);
+            }
+            
+            // フッターを2ページ目に追加
+            const footer = document.createElement('div');
+            footer.innerHTML = `
+                <hr style="border: 1px solid #243673; margin: 15px 0;">
+                <div style="text-align: center; font-size: 10pt; color: #666;">
+                    ©Yukari Ikemotoのデザイン帝王学<br>
+                    生成日時: ${new Date().toLocaleString('ja-JP')}
+                </div>
+            `;
+            footer.style.cssText = 'margin-top: 20px;';
+            page2.appendChild(footer);
+            
+            // 2ページを縦に積み重ねてPDFコンテナに追加
+            pdfContainer.appendChild(page1);
+            pdfContainer.appendChild(page2);
+            
+            // プレビューコンテンツに追加
+            previewContent.appendChild(pdfContainer);
+            previewModal.appendChild(previewContent);
+            
+            // プレビューを表示
+            document.body.appendChild(previewModal);
+            
+            // PDF生成ボタンをプレビューヘッダーに追加
+            const generatePDFBtn = document.createElement('button');
+            generatePDFBtn.textContent = '🖨️ PDFを生成する';
+            generatePDFBtn.style.cssText = `
+                background: #28a745;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-left: 10px;
+            `;
+            generatePDFBtn.onclick = async () => {
+                try {
+                    // プレビューを閉じる
+                    generatePDFBtn.disabled = true;
+                    
+                    // 印刷ボタン関連のコードを削除
+                    
+                    // PDF生成処理
+                    await generatePDFFromPreview(pdfContainer);
+                    document.body.removeChild(previewModal);
+                    
+                } catch (error) {
+                    alert('PDF生成中にエラーが発生しました。');
+                    
+                    // 印刷ボタン関連のコードを削除
+                }
+            };
+            
+            previewHeader.appendChild(generatePDFBtn);
+            
+        } catch (error) {
+            alert('プレビュー生成中にエラーが発生しました。');
+            
+            // 印刷ボタン関連のコードを削除
+        }
+    }
+    
+    // プレビューからPDF生成する関数
+    async function generatePDFFromPreview(pdfContainer) {
+        try {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const previousTransform = pdfContainer.style.transform;
+            pdfContainer.style.transform = 'none';
+            try {
+                for (let i = 0; i < pdfContainer.children.length; i++) {
+                    const page = pdfContainer.children[i];
+                    const canvas = await html2canvas(page, {
+                        scale: 2, backgroundColor: '#ffffff', logging: false
+                    });
+                    if (i > 0) pdf.addPage();
+                    const scale = Math.min(190 / canvas.width, 277 / canvas.height);
+                    pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 10, 10,
+                        canvas.width * scale, canvas.height * scale);
+                }
+            } finally {
+                pdfContainer.style.transform = previousTransform;
+            }
+            // PDFをダウンロード
+            const fileName = `南半球版鑑定書_${document.getElementById('birth_year').value}${document.getElementById('birth_month').value}${document.getElementById('birth_day').value}.pdf`;
+            pdf.save(fileName);
+            
+        } catch (error) {
+            alert(`PDF生成中にエラーが発生しました。\nエラー: ${error.message}`);
+            
+            // 印刷ボタン関連のコードを削除
+        }
+    }
+    </script>
+</body>
+</html> 
+
+

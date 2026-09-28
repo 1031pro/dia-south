@@ -1,0 +1,2132 @@
+/* 基本スタイル */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body {
+  background: #FFFFFF;
+  color: #243673;
+  font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Meiryo', 'Hiragino Sans', sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+
+h1, h2, h3 {
+  color: #00A3A5;
+  margin-bottom: 16px;
+  font-size: 1.6em;
+}
+
+h1 {
+  font-size: 1.8em;
+  text-align: center;
+}
+
+/* 入力フォーム */
+.input-form {
+  background: #FFFEF0;
+  border: 2px solid #FFCC66;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(36, 54, 115, 0.08);
+  padding: 24px;
+  margin-bottom: 32px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  box-sizing: border-box;
+}
+
+.form-group label {
+  color: #243673;
+  font-weight: bold;
+}
+
+input, select {
+  border: 1.5px solid #00A3A5;
+  border-radius: 6px;
+  padding: 4px 8px;
+  background: #ffffff;
+  color: #243673;
+  margin-right: 8px;
+}
+
+input[type="radio"] {
+  accent-color: #00A3A5;
+}
+
+button {
+  background: linear-gradient(90deg, #FFA500 60%, #FFD700 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #FFCC66 60%, #FFFF99 100%);
+}
+
+/* 2x2グリッド + 下部中央レイアウト */
+.grid-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: visible;
+  min-width: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.grid-item {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-center {
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  position: relative;
+}
+
+/* 2列レイアウト（旧レイアウト - スマホ用に保持） */
+.two-column-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: visible;
+  min-width: 0;
+}
+
+.left-column, .right-column {
+  box-sizing: border-box;
+  display: block;
+}
+
+.left-column {
+  box-sizing: border-box;
+  display: block;
+}
+
+.right-column {
+  box-sizing: border-box;
+  display: block;
+}
+
+.top-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+/* 各コンテナの基本スタイル */
+.daiun-container {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  background: #FFFEF0;
+  border: 2px solid #FFCC66;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(36, 54, 115, 0.08);
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+#actionKeywordsContainer {
+  background: #FFFEF0;
+  border: 2px solid #FFCC66;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(36, 54, 115, 0.08);
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 300px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+
+/* 命式コンテナの幅を入力欄と同じに統一 */
+.meishiki-container {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  background: #FFFEF0;
+  border: 2px solid #FFCC66;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(36, 54, 115, 0.08);
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+
+.content-box {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 命式テーブル */
+#meishikiTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 4px;
+  box-shadow: 0 2px 8px rgba(36, 54, 115, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  table-layout: fixed;
+}
+
+/* テーブルの横スクロール対応 */
+.meishiki-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.meishiki-container table {
+  min-width: 600px;
+}
+
+#meishikiTable th,
+#meishikiTable td {
+  min-width: 80px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+#meishikiTable th {
+  background: linear-gradient(135deg, #7583c4, #4b5db3);
+  color: #ffffff;
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#meishikiTable td {
+  padding: 8px;
+  text-align: center;
+  color: #243673;
+  border-bottom: 1.5px solid #FFCC66;
+  background: #ffffff;
+  white-space: pre-line;
+  word-break: keep-all;
+  line-height: 1.2;
+}
+
+/* 五行セル以外のセルの基本スタイル */
+#meishikiTable td:not(.wood-cell):not(.fire-cell):not(.earth-cell):not(.metal-cell):not(.water-cell) {
+  background: #ffffff !important;
+  color: #243673 !important;
+}
+
+/* 五行セル - 着色を確実に表示 */
+#meishikiTable .wood-cell,
+.meishiki-container .wood-cell,
+.meishiki-container table .wood-cell {
+  background: linear-gradient(135deg, #82D384, #44B547) !important;
+  color: #ffffff !important;
+  border: 1px solid #44B547 !important;
+}
+
+#meishikiTable .fire-cell,
+.meishiki-container .fire-cell,
+.meishiki-container table .fire-cell {
+  background: linear-gradient(135deg, #FF8A84, #F0423A) !important;
+  color: #ffffff !important;
+  border: 1px solid #F0423A !important;
+}
+
+#meishikiTable .earth-cell,
+.meishiki-container .earth-cell,
+.meishiki-container table .earth-cell {
+  background: linear-gradient(135deg, #FFDB41, #EDB200) !important;
+  color: #ffffff !important;
+  border: 1px solid #EDB200 !important;
+}
+
+#meishikiTable .metal-cell,
+.meishiki-container .metal-cell,
+.meishiki-container table .metal-cell {
+  background: linear-gradient(135deg, #D88EE3, #B54CC4) !important;
+  color: #ffffff !important;
+  border: 1px solid #B54CC4 !important;
+}
+
+#meishikiTable .water-cell,
+.meishiki-container .water-cell,
+.meishiki-container table .water-cell {
+  background: linear-gradient(135deg, #41CBFF, #00A0E8) !important;
+  color: #ffffff !important;
+  border: 1px solid #00A0E8 !important;
+}
+
+/* 五行セルのホバー効果 */
+#meishikiTable .wood-cell:hover,
+#meishikiTable .fire-cell:hover,
+#meishikiTable .earth-cell:hover,
+#meishikiTable .metal-cell:hover,
+#meishikiTable .water-cell:hover,
+.meishiki-container .wood-cell:hover,
+.meishiki-container .fire-cell:hover,
+.meishiki-container .earth-cell:hover,
+.meishiki-container .metal-cell:hover,
+.meishiki-container .water-cell:hover {
+  opacity: 0.9 !important;
+  transform: scale(1.02) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* 行ヘッダー - 着色を確実に表示 */
+.meishiki-container .row-header-1,
+.meishiki-container .row-header-2,
+.meishiki-container .row-header-3,
+.meishiki-container .row-header-4,
+.meishiki-container .row-header-5,
+.meishiki-container .row-header-6,
+.meishiki-container .row-header-7,
+.meishiki-container .row-header-8 {
+  background: linear-gradient(135deg, #7583c4, #4b5db3);
+  color: #ffffff;
+  min-width: 100px;
+  text-align: center;
+  padding: 8px 4px;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* 大運テーブルの罫線を確実に表示 */
+.daiun-container table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.daiun-container table th,
+.daiun-container table td {
+  border: 1px solid #FFCC66;
+  padding: 8px;
+  text-align: center;
+}
+
+.daiun-container table th {
+  background: linear-gradient(135deg, #7583c4, #4b5db3);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.daiun-container table td {
+  background: #ffffff;
+  color: #243673;
+}
+
+/* 行動キーワード表 */
+.action-keywords-table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  width: 100%;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* 行動キーワード表の横スクロール対応 */
+.action-keywords-table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+#actionKeywordsTable {
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: 0 2px 8px rgba(36, 54, 115, 0.1);
+}
+
+/* PCレイアウト用の⑤テーブル設定 */
+@media (min-width: 1025px) {
+  #actionKeywordsTable {
+    min-width: 800px;
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+  }
+  
+  #actionKeywordsTable th,
+  #actionKeywordsTable td {
+    min-width: 80px;
+  }
+}
+
+#actionKeywordsTable th,
+#actionKeywordsTable td {
+  border: 1px solid #FFCC66;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+  /* 角のセル */
+  .corner-cell {
+    background: #ffffff;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    border: 1px solid #FFCC66;
+  }
+  
+  /* スマホ・タブレット用の角のセル調整 */
+  @media (max-width: 1024px) {
+    .corner-cell {
+      width: 80px !important;
+      height: 60px !important;
+      min-width: 80px !important;
+      min-height: 60px !important;
+    }
+    
+    .corner-top {
+      font-size: 10px !important;
+      top: 4px !important;
+      right: 4px !important;
+    }
+    
+    .corner-bottom {
+      font-size: 10px !important;
+      bottom: 2px !important;
+      left: 4px !important;
+    }
+  }
+  
+
+.corner-cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom left, transparent 49.5%, #FFCC66 49.5%, #FFCC66 50.5%, transparent 50.5%);
+  pointer-events: none;
+}
+
+.corner-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.corner-top {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 12px;
+  color: #243673;
+}
+
+.corner-bottom {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 12px;
+  color: #243673;
+}
+
+/* 五行のヘッダー色 */
+.wood-header {
+  background: #E8F5E8;
+  color: #243673;
+  font-weight: bold;
+}
+
+.fire-header {
+  background: #FFE4E1;
+  color: #243673;
+  font-weight: bold;
+}
+
+.earth-header {
+  background: #FFFACD;
+  color: #243673;
+  font-weight: bold;
+}
+
+.metal-header {
+  background: #F8F8FF;
+  color: #243673;
+  font-weight: bold;
+}
+
+.water-header {
+  background: #F0F8FF;
+  color: #243673;
+  font-weight: bold;
+}
+
+/* 基本情報と追加情報 */
+#basicInfo, #additionalInfo {
+  background: #FFFEF0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  color: #243673;
+}
+
+/* 三角形コンテナ */
+.triangle-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 0;
+  overflow: hidden;
+  max-width: none;
+}
+
+#triangleCanvas {
+  max-width: none;
+  max-height: none;
+  aspect-ratio: 1;
+  display: block;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* チャート */
+#tsuhenChart {
+  max-width: 100%;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* ③ソシアルメーターの円グラフ内の文字を命式の行タイトルくらいの大きさに */
+#tsuhenChart {
+  font-size: 1em;
+}
+
+/* 円グラフ内の文字を確実に調整する */
+#tsuhenChart text,
+#tsuhenChart tspan,
+#tsuhenChart .chart-text {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+/* より強力な円グラフ文字サイズ設定 */
+#tsuhenChartContainer svg text,
+#tsuhenChartContainer svg tspan,
+#tsuhenChartContainer canvas {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+/* 円グラフ内のすべてのテキスト要素を対象に */
+#tsuhenChartContainer * {
+  font-size: 1em;
+}
+
+/* ③ソシアルメーターのコピーライトを他のものと同じサイズに */
+#tsuhenChartContainer .copyright {
+  font-size: 0.7em;
+}
+
+/* コピーライト */
+.copyright {
+  font-family: 'Meiryo', 'Hiragino Sans', sans-serif;
+  font-size: 0.7em;
+  color: #243673;
+  text-align: center;
+  margin-top: 16px;
+  padding-top: 8px;
+  border-top: 1px solid #FFCC66;
+}
+
+/* 暦のリンクボタン */
+.koyomi-link-container {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #FFCC66;
+}
+
+.koyomi-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 20px 40px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  min-width: 200px;
+  min-height: 60px;
+  text-align: center;
+}
+
+.koyomi-link-button:hover {
+  background: linear-gradient(90deg, #45a049, #4CAF50);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.koyomi-link-button:active {
+  transform: translateY(0);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 800px) {
+  .container {
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .two-column-layout {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .top-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .meishiki-container, .daiun-container {
+    margin: 0 0 16px 0;
+    padding: 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  
+  
+  /* ③通変チャートの印刷レイアウト用 */
+  #tsuhenChart {
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+    overflow: hidden !important;
+  }
+  
+  /* ④ライフエリアマップの印刷レイアウト用 */
+  #triangleCanvas {
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+    overflow: hidden !important;
+  }
+  
+  /* ⑤行動キーワードの印刷レイアウト用 */
+  #actionKeywordsTable {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+    margin: 16px auto 0 auto !important;
+    display: table !important;
+    text-align: center !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    overflow: hidden !important;
+  }
+  
+  #actionKeywordsTable th,
+  #actionKeywordsTable td {
+    padding: 8px 4px !important;
+    font-size: 12px !important;
+    word-break: break-word !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+  
+  /* ⑤テーブルコンテナの印刷レイアウト用 */
+  .action-keywords-table-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  
+  /* スマホ・タブレット用の列幅制御（強制） */
+  #actionKeywordsTable .corner-cell {
+    width: 80px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+    box-sizing: border-box !important;
+  }
+  
+  #actionKeywordsTable th:not(.corner-cell),
+  #actionKeywordsTable td:not(.corner-cell) {
+    width: calc((100% - 80px) / 5) !important;
+    min-width: calc((100% - 80px) / 5) !important;
+    max-width: calc((100% - 80px) / 5) !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* 各列の幅を明示的に設定 */
+  #actionKeywordsTable th:nth-child(1),
+  #actionKeywordsTable td:nth-child(1) {
+    width: 80px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+  }
+  
+  #actionKeywordsTable th:nth-child(2),
+  #actionKeywordsTable td:nth-child(2),
+  #actionKeywordsTable th:nth-child(3),
+  #actionKeywordsTable td:nth-child(3),
+  #actionKeywordsTable th:nth-child(4),
+  #actionKeywordsTable td:nth-child(4),
+  #actionKeywordsTable th:nth-child(5),
+  #actionKeywordsTable td:nth-child(5),
+  #actionKeywordsTable th:nth-child(6),
+  #actionKeywordsTable td:nth-child(6) {
+    width: calc((100% - 80px) / 5) !important;
+    min-width: calc((100% - 80px) / 5) !important;
+    max-width: calc((100% - 80px) / 5) !important;
+  }
+
+  .content-box {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  #meishikiTable {
+    font-size: 12px;
+    border-spacing: 2px;
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+  }
+
+  #meishikiTable th,
+  #meishikiTable td {
+    min-width: auto;
+    padding: 6px 2px;
+    font-size: 11px;
+    word-break: break-all;
+  }
+
+  .meishiki-container .row-header-1,
+  .meishiki-container .row-header-2,
+  .meishiki-container .row-header-3,
+  .meishiki-container .row-header-4,
+  .meishiki-container .row-header-5,
+  .meishiki-container .row-header-6,
+  .meishiki-container .row-header-7,
+  .meishiki-container .row-header-8 {
+    min-width: 60px;
+    font-size: 10px;
+    padding: 4px 1px;
+  }
+
+
+
+  #tsuhenChart {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  #triangleCanvas {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .copyright {
+    font-size: 0.8em;
+    margin-top: 12px;
+    padding-top: 6px;
+  }
+
+  .input-form {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 20px 0;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  
+  
+  #actionKeywordsContainer {
+    width: 300px !important;
+    max-width: 300px !important;
+    margin: 0 auto 20px auto !important;
+    padding: 16px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 5px;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .meishiki-container,
+  .daiun-container,
+  #tsuhenChartContainer {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 12px 0;
+    padding: 12px;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+  
+  #actionKeywordsContainer {
+    width: 300px;
+    max-width: 300px;
+    margin: 0 auto 12px auto;
+    padding: 12px;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+  
+  
+  /* ⑤を印刷プレビューのような見え方に調整（600px以下） */
+  #actionKeywordsContainer {
+    text-align: center !important;
+    padding: 12px !important;
+    margin: 0 auto 12px auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 300px !important;
+    max-width: 300px !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    float: none !important;
+  }
+  
+  /* ③ソシアルメーターの600px以下用調整（印刷レイアウト用） */
+  #tsuhenChart {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+  }
+  
+  /* ④ライフエリアマップの600px以下用調整（印刷レイアウト用） */
+  #triangleCanvas {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+  }
+  
+  /* ⑤行動キーワードの600px以下用調整（印刷レイアウト用） */
+  #actionKeywordsTable {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 11px !important;
+    margin: 16px auto 0 auto !important;
+    display: table !important;
+    text-align: center !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    overflow: hidden !important;
+  }
+  
+  #actionKeywordsTable th,
+  #actionKeywordsTable td {
+    padding: 4px 1px !important;
+    font-size: 11px !important;
+    word-break: break-word !important;
+    text-align: center !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: auto !important;
+    overflow: hidden !important;
+    white-space: normal !important;
+  }
+  
+  /* ⑤のテーブルコンテナも中央揃え（600px以下） */
+  .action-keywords-table-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* スマホ用：テーブルを画面幅に収める（②と同じ文字サイズ） */
+  .meishiki-container {
+    overflow: visible;
+  }
+
+  .meishiki-container table {
+    min-width: auto;
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+    font-size: 14px;
+  }
+
+  #meishikiTable {
+    font-size: 14px;
+    border-spacing: 2px;
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+    overflow: visible;
+  }
+
+  #meishikiTable th,
+  #meishikiTable td {
+    min-width: auto;
+    padding: 8px 4px;
+    font-size: 14px;
+    word-break: break-all;
+    max-width: 80px;
+  }
+
+  .meishiki-container .row-header-1,
+  .meishiki-container .row-header-2,
+  .meishiki-container .row-header-3,
+  .meishiki-container .row-header-4,
+  .meishiki-container .row-header-5,
+  .meishiki-container .row-header-6,
+  .meishiki-container .row-header-7,
+  .meishiki-container .row-header-8 {
+    min-width: 60px;
+    max-width: 60px;
+    font-size: 14px;
+    padding: 8px 4px;
+  }
+
+  /* 行動キーワード表を画面幅に収める */
+  .action-keywords-table-container {
+    overflow: visible;
+  }
+
+  #actionKeywordsTable {
+    font-size: 8px;
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
+    table-layout: auto;
+    overflow: visible;
+  }
+
+  #actionKeywordsTable th,
+  #actionKeywordsTable td {
+    min-width: auto;
+    max-width: 60px;
+    padding: 3px 1px;
+    font-size: 7px;
+    word-break: break-all;
+  }
+
+  .corner-cell {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 35px;
+    max-height: 35px;
+  }
+
+  .corner-top,
+  .corner-bottom {
+    font-size: 6px;
+  }
+
+  .copyright {
+    font-size: 0.7em;
+    margin-top: 8px;
+    padding-top: 4px;
+  }
+
+  h1 {
+    font-size: 1.4em;
+    margin-bottom: 12px;
+  }
+
+  h2, h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .input-form {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  button {
+    padding: 6px 16px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 3px;
+  }
+
+  .meishiki-container,
+  .daiun-container,
+  #tsuhenChartContainer,
+  #actionKeywordsContainer {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  
+  
+  /* ⑤を印刷プレビューのような見え方に調整（480px以下） */
+  #actionKeywordsContainer {
+    text-align: center !important;
+    padding: 8px !important;
+    width: 300px !important;
+    max-width: 300px !important;
+    margin: 0 auto 8px auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    float: none !important;
+  }
+  
+  /* ③ソシアルメーターの480px以下用調整 */
+  #tsuhenChart {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  /* ④ライフエリアマップの480px以下用調整 */
+  #triangleCanvas {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  /* ⑤行動キーワードの480px以下用調整 */
+  #actionKeywordsTable {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 10px !important;
+    margin: 0 auto !important;
+    display: table !important;
+    text-align: center !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    overflow: hidden !important;
+  }
+  
+  #actionKeywordsTable th,
+  #actionKeywordsTable td {
+    padding: 3px 1px !important;
+    font-size: 10px !important;
+    word-break: break-word !important;
+    text-align: center !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: auto !important;
+    overflow: hidden !important;
+    white-space: normal !important;
+  }
+  
+  /* ⑤のテーブルコンテナも中央揃え（480px以下） */
+  .action-keywords-table-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* さらに小さなスマホ用（②と同じ文字サイズ） */
+  #meishikiTable {
+    font-size: 14px;
+    border-spacing: 2px;
+  }
+
+  #meishikiTable th,
+  #meishikiTable td {
+    padding: 6px 3px;
+    font-size: 14px;
+    max-width: 70px;
+  }
+
+  .meishiki-container .row-header-1,
+  .meishiki-container .row-header-2,
+  .meishiki-container .row-header-3,
+  .meishiki-container .row-header-4,
+  .meishiki-container .row-header-5,
+  .meishiki-container .row-header-6,
+  .meishiki-container .row-header-7,
+  .meishiki-container .row-header-8 {
+    min-width: 50px;
+    max-width: 50px;
+    font-size: 14px;
+    padding: 6px 3px;
+  }
+
+  #actionKeywordsTable {
+    font-size: 7px;
+  }
+
+  #actionKeywordsTable th,
+  #actionKeywordsTable td {
+    padding: 2px 1px;
+    font-size: 6px;
+    max-width: 50px;
+  }
+
+  .corner-cell {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    max-width: 30px;
+    max-height: 30px;
+  }
+
+  .corner-top,
+  .corner-bottom {
+    font-size: 5px;
+  }
+
+  h1 {
+    font-size: 1.2em;
+  }
+
+  h2, h3 {
+    font-size: 1.1em;
+  }
+}
+
+/* フッタースタイル */
+.site-footer {
+  background-color: #FFCC66;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+
+
+  /* ③ソシアルメーターのツールチップスタイル */
+  .chartjs-tooltip,
+  #tsuhenChart .chartjs-tooltip,
+  .chartjs-tooltip[data-chartjs-tooltip],
+  .chartjs-tooltip[style*="position: absolute"],
+  div[style*="position: absolute"][style*="background-color: rgb(0, 0, 0)"],
+  div[style*="position: absolute"][style*="background-color: black"] {
+    background-color: #1e3a8a !important;
+    color: #ffffff !important;
+    border: 1px solid #1e3a8a !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+
+
+/* destiny-master.html専用のスマホ対応スタイル */
+.date-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.radio-label {
+  display: inline-block;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.calculate-button {
+  width: 100%;
+  max-width: 500px;
+  margin: 16px auto 0;
+  display: block;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 16px 0;
+}
+
+/* スマホ用の追加調整 */
+@media (max-width: 600px) {
+  .date-inputs {
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+  
+  .date-inputs select {
+    width: auto;
+    max-width: 60px;
+    min-width: 50px;
+    font-size: 12px;
+    padding: 4px 2px;
+  }
+  
+  /* 年のプルダウンの幅を広げる */
+  .date-inputs select:first-child {
+    max-width: 70px;
+    min-width: 65px;
+  }
+  
+  .date-inputs select + span {
+    font-size: 12px;
+    margin: 0 2px;
+  }
+  
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .radio-label {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+  
+  .calculate-button {
+    width: 100%;
+    max-width: none;
+    margin-top: 20px;
+  }
+  
+  .table-container {
+    margin: 12px 0;
+  }
+  
+  .koyomi-link-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0 8px;
+  }
+  
+  .koyomi-link-button {
+    width: 100%;
+    max-width: none;
+    min-width: auto;
+    padding: 16px 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .date-inputs {
+    gap: 2px;
+  }
+  
+  .date-inputs select {
+    max-width: 50px;
+    min-width: 45px;
+    font-size: 11px;
+    padding: 3px 1px;
+  }
+  
+  /* 年のプルダウンの幅を広げる */
+  .date-inputs select:first-child {
+    max-width: 65px;
+    min-width: 60px;
+  }
+  
+  .date-inputs select + span {
+    font-size: 11px;
+    margin: 0 1px;
+  }
+  
+  .calculate-button {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+  
+  .koyomi-link-button {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .date-inputs {
+    gap: 1px;
+  }
+  
+  .date-inputs select {
+    max-width: 45px;
+    min-width: 40px;
+    font-size: 10px;
+    padding: 2px 1px;
+  }
+  
+  /* 年のプルダウンの幅を広げる */
+  .date-inputs select:first-child {
+    max-width: 60px;
+    min-width: 55px;
+  }
+  
+  .date-inputs select + span {
+    font-size: 10px;
+    margin: 0;
+  }
+}
+
+/* スマホ・タブレット用のレイアウト調整 */
+@media (max-width: 1024px) {
+  /* グリッドレイアウトを縦並びに変更 */
+  .grid-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .grid-item {
+    width: 100%;
+    min-height: auto;
+    margin-bottom: 16px;
+  }
+  
+  .bottom-center {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  /* iPad mini用の特別設定 */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    #actionKeywordsTable {
+      width: 100% !important;
+      max-width: 100% !important;
+      font-size: 14px !important;
+      margin: 0 auto !important;
+      display: table !important;
+      text-align: center !important;
+      table-layout: auto !important;
+      border-collapse: collapse !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+    
+    #actionKeywordsTable th,
+    #actionKeywordsTable td {
+      padding: 10px 6px !important;
+      font-size: 14px !important;
+      word-break: break-word !important;
+      text-align: center !important;
+      width: auto !important;
+      max-width: none !important;
+      min-width: auto !important;
+      overflow: hidden !important;
+      white-space: normal !important;
+      box-sizing: border-box !important;
+    }
+  }
+  /* スマホ用の強制中央揃え設定 */
+  .right-column {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .top-right-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* ③④⑤の親要素も中央揃えに強制 */
+  .content-box {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .two-column-layout {
+    flex-direction: column;
+  }
+  
+  .left-column, .right-column {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .top-row {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .top-right-row {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .meishiki-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .daiun-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .content-box {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  
+  /* ⑤を印刷プレビューのような見え方に調整 */
+  #actionKeywordsContainer {
+    width: 300px !important;
+    max-width: 300px !important;
+    margin: 0 auto 20px auto !important;
+    padding: 16px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    float: none !important;
+  }
+  
+  /* ③ソシアルメーターのスマホ用調整 */
+  #tsuhenChartContainer {
+    text-align: center !important;
+  }
+  
+  #tsuhenChart {
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+    text-align: center !important;
+  }
+  
+  
+  #triangleCanvas {
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+    text-align: center !important;
+  }
+  
+  /* ⑤行動キーワードのスマホ用調整 */
+  #actionKeywordsContainer {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  
+  #actionKeywordsTable {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+    margin: 0 auto !important;
+    display: table !important;
+    text-align: center !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    overflow: hidden !important;
+  }
+  
+  #actionKeywordsTable th,
+  #actionKeywordsTable td {
+    padding: 6px 2px !important;
+    font-size: 12px !important;
+    word-break: break-word !important;
+    text-align: center !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: auto !important;
+    overflow: hidden !important;
+    white-space: normal !important;
+  }
+  
+  /* ⑤のテーブルコンテナも中央揃え */
+  .action-keywords-table-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+}
+
+/* 右側の③④を1行に配置するためのスタイル */
+.top-right-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+  overflow: visible;
+  min-width: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.top-right-row > div {
+  min-width: 0;
+  overflow: visible;
+}
+
+/* ③ソシアルメーターを小さく表示 */
+#tsuhenChartContainer {
+  flex: 0 0 30%;
+  max-width: 30%;
+  width: 30%;
+  overflow: visible;
+  min-width: 0;
+  margin-right: 20px;
+  margin-left: -40px;
+  box-sizing: border-box;
+  display: block;
+  float: none;
+  position: static;
+  left: auto;
+  right: auto;
+  transform: none;
+}
+
+/* ③の強制設定（より具体的なセレクタ） */
+.right-column #tsuhenChartContainer {
+  flex: 0 0 30%;
+  max-width: 30%;
+  width: 30%;
+}
+
+.top-right-row #tsuhenChartContainer {
+  flex: 0 0 30%;
+  max-width: 30%;
+  width: 30%;
+}
+
+
+
+
+/* ⑤行動キーワードの表示調整 */
+#actionKeywordsContainer {
+  width: 80%;
+  max-width: 80%;
+  overflow: visible;
+  min-width: 0;
+  position: relative;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ⑤のボックスを80%幅に調整（上書き） */
+.bottom-center #actionKeywordsContainer {
+  width: 80%;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-shrink: 0;
+}
+
+/* 右側のコンテンツが切れないようにする */
+.right-column .content-box {
+  width: auto;
+  max-width: none;
+  overflow: visible;
+  box-sizing: border-box;
+  min-width: 0;
+  position: relative;
+  right: 0;
+  left: 0;
+  padding: 16px;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* 右側のコンテンツが画面外にはみ出さないように */
+.right-column {
+  overflow: visible;
+  min-width: 0;
+  max-width: none;
+  width: auto;
+  flex: 1 1 auto;
+  position: relative;
+  right: 0;
+  left: 0;
+  padding-right: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* 右側のコンテンツが確実に表示されるように強制設定 */
+.right-column * {
+  overflow: visible;
+  min-width: 0;
+  max-width: none;
+}
+
+
+/* ③ソシアルメーターのキャンバスサイズを調整 */
+#tsuhenChart {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  max-height: 300px;
+}
+
+/* ④ライフエリアマップのキャンバスサイズを調整 */
+#triangleCanvas {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+/* PC表示のレイアウト修正: 2x2グリッド + 下部中央レイアウト */
+@media (min-width: 1025px) {
+  #resultsContainer.show {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+    min-width: 0;
+  }
+  
+  .grid-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .grid-item {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    background: #FFFEF0;
+    border: 2px solid #FFCC66;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(36, 54, 115, 0.08);
+    padding: 24px;
+    box-sizing: border-box;
+  }
+  
+  
+  .grid-item .content-box {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  /* ③④のh2とcopyrightは通常の配置 */
+  
+  /* ③④のコンテナは①②と同じmeishiki-container/daiun-containerを使用 */
+  
+  /* ⑤行動キーワードコンテナの設定は上記で定義済み */
+  
+  .left-column {
+    flex: 0 0 30%;
+    max-width: 30%;
+    width: 30%;
+    order: 1;
+    margin-right: 2%;
+    display: block;
+    float: none;
+    position: relative;
+    left: 0;
+    overflow: visible;
+    min-width: 0;
+  }
+  
+  .right-column {
+    flex: 0 0 70%;
+    max-width: 70%;
+    width: 70%;
+    order: 2;
+    margin-left: 2%;
+    display: block;
+    float: none;
+    position: relative;
+    right: 0;
+    overflow: visible;
+    min-width: 0;
+  }
+  
+  /* 右側のコンテンツが確実に表示されるように強制設定 */
+  .right-column * {
+    overflow: visible;
+    min-width: 0;
+    max-width: none;
+  }
+  
+  /* 右側のコンテンツが切れないように強制設定 */
+  .right-column {
+    overflow: visible;
+    min-width: 0;
+    max-width: none;
+    width: auto;
+    flex: 1 1 auto;
+  }
+  
+  /* 右側の③④⑤が確実に表示されるように */
+  #tsuhenChartContainer,
+  #actionKeywordsContainer {
+    overflow: visible;
+    min-width: 0;
+    max-width: none;
+    width: auto;
+    position: relative;
+  }
+  
+  .top-row {
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 0;
+    width: 100%;
+  }
+  
+  .top-row > .meishiki-container,
+  .top-row > .daiun-container {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* 命式コンテナの固定幅をPCでは解除してカラム幅に追従 */
+  .meishiki-container {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  /* content-boxの固定幅をPCでは解除 */
+  .content-box {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* テーブルが不必要に横幅を要求しないようにする */
+  .meishiki-container table {
+    min-width: 0;
+  }
+
+  #meishikiTable th,
+  #meishikiTable td {
+    min-width: auto;
+  }
+  
+  /* 右側のコンテンツを縦に並べる */
+  .right-column > div {
+    margin-bottom: 24px;
+  }
+  
+  .right-column > div:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* 右側の③④を1行に配置 */
+  .top-right-row {
+    flex-direction: row;
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+  
+  .top-right-row > div {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  /* PC上での③④のサイズ調整 */
+  #tsuhenChartContainer {
+    flex: 0 0 50%;
+    max-width: 50%;
+    width: 50%;
+  }
+  
+}
+
+/* 初期状態での非表示設定 */
+#resultsContainer {
+  display: none;
+}
+
+#resultsContainer.show {
+  display: flex;
+}
+
+/* ⑤の表示を強制 */
+  #actionKeywordsContainer {
+  display: block !important;
+}
+
+/* 印刷時の設定 */
+@media print {
+  /* スクロールバーを非表示にして中央配置 */
+  * {
+    overflow: visible !important;
+  }
+  
+  body {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  
+  .grid-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  
+  .grid-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  
+  /* 印刷時の基本レイアウト設定 */
+  .grid-layout {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .grid-container {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    gap: 0 !important;
+  }
+  
+  .grid-item {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  /* ①命式 - 1ページ目 */
+  .meishiki-container:first-of-type {
+    page-break-before: auto !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* ②大運 - 2ページ目 */
+  .daiun-container:first-of-type {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* ③ソシアルメーター - 3ページ目 */
+  .meishiki-container:nth-of-type(2) {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* ④ライフエリアマップ - 4ページ目 */
+  .daiun-container:nth-of-type(2) {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* ⑤行動キーワード - 5ページ目 */
+  #actionKeywordsContainer {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* 色付き印刷の強制設定 */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  
+  /* ①命式の色付き印刷設定 */
+  .meishiki-container:first-of-type {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  
+  .meishiki-container:first-of-type table {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  
+  .meishiki-container:first-of-type th,
+  .meishiki-container:first-of-type td {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
+
+@media (max-width: 600px) {
+  /* ⑤行動キーワードのスマホ表示は幅100% */
+  #actionKeywordsContainer {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* ⑤行動キーワードのスマホ表示は幅100%（480px以下で再確認） */
+  #actionKeywordsContainer {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+
+
