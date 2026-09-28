@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <title>北半球版の比較結果</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body { margin: 0; padding: 20px 0; }
+        .container { width: 100%; max-width: none; padding: 0 12px; box-sizing: border-box; }
+        .grid-container { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+        .grid-item { min-width: 0; }
+        @media(max-width: 700px) { .grid-container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h2>北半球版（比較用）</h2>
+        <div class="grid-container">
+            <div class="meishiki-container grid-item">
+                <h2 id="meishikiTitle">①命式</h2>
+                <div id="basicInfo"></div>
+                <table id="meishikiTable">
+                    <tr id="tenkanRow"></tr><tr id="chishiRow"></tr>
+                    <tr id="kanshiNumRow"></tr><tr id="zokanRow"></tr>
+                    <tr id="tsuhenRow"></tr><tr id="zokanTsuhenRow"></tr>
+                    <tr id="junniRow"></tr>
+                </table>
+                <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+            </div>
+            <div class="daiun-container grid-item">
+                <h2>②大運</h2><div id="daiunTable"></div>
+                <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+            </div>
+        </div>
+    </main>
+    <script src="kanshi_data.js"></script>
+    <script src="meishiki.js"></script>
+    <script>
+        function renderNorth(year, month, day, sex) {
+            const birthdate = new Date(Date.UTC(year, month - 1, day));
+            const chart = new Meishiki(birthdate, null, sex);
+            chart.buildMeishiki();
+            chart.displayMeishiki();
+            displayDaiunTable(chart, birthdate, sex);
+            resizeFrame();
+        }
+        function resizeFrame() {
+            if (window.frameElement) {
+                window.frameElement.style.height = Math.ceil(document.querySelector('main').getBoundingClientRect().height + 48) + 'px';
+            }
+        }
+        new ResizeObserver(resizeFrame).observe(document.querySelector('main'));
+    </script>
+</body>
+</html>
