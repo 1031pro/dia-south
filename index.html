@@ -44,7 +44,7 @@
         <!-- 2x2グリッド + 下部中央レイアウトのコンテナ -->
         <div class="grid-layout" id="resultsContainer" style="display: none;">
             <!-- 2x2グリッド部分 -->
-            <div class="grid-container">
+            <div class="grid-container" style="grid-template-rows:auto;">
                 <!-- ①命式 -->
                 <div class="meishiki-container grid-item">
                     <h2 id="meishikiTitle">①命式</h2>
@@ -69,6 +69,12 @@
                     <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
                 </div>
                 
+            </div>
+        <section id="northComparison" style="width:100%;max-width:1200px;" hidden aria-label="北半球版との比較">
+            <p id="northComparisonError" role="status" hidden></p>
+            <iframe id="northComparisonFrame" title="北半球版の命式と大運" style="width:100%;border:0;display:block;min-height:850px;"></iframe>
+        </section>
+            <div class="grid-container" style="grid-template-rows:auto;">
                 <!-- ③ソシアルメーター -->
                 <div class="meishiki-container grid-item">
                     <h2>③ソシアルメーター</h2>
@@ -153,10 +159,7 @@
             </div>
         </div>
         
-        <section id="northComparison" hidden aria-label="北半球版との比較">
-            <p id="northComparisonError" role="status" hidden></p>
-            <iframe id="northComparisonFrame" title="北半球版の命式と大運" style="width:100%;border:0;display:block;min-height:850px;"></iframe>
-        </section>
+
         <!-- 印刷ボタンを削除 -->
     </div>
 
