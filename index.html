@@ -154,6 +154,7 @@
         </div>
         
         <section id="northComparison" hidden aria-label="北半球版との比較">
+            <p id="northComparisonError" role="status" hidden></p>
             <iframe id="northComparisonFrame" title="北半球版の命式と大運" style="width:100%;border:0;display:block;min-height:850px;"></iframe>
         </section>
         <!-- 印刷ボタンを削除 -->
@@ -290,8 +291,18 @@
         const frame = document.getElementById('northComparisonFrame');
         section.hidden = false;
         function render() {
-            if (typeof frame.contentWindow.renderNorth === 'function') {
+            const error = document.getElementById('northComparisonError');
+            try {
+                if (typeof frame.contentWindow.renderNorth !== 'function') return;
+                frame.hidden = false;
+                frame.style.display = 'block';
                 frame.contentWindow.renderNorth(...northComparisonInput);
+                error.hidden = true;
+            } catch (cause) {
+                frame.style.display = 'none';
+                error.textContent = '北半球版の比較結果を表示できませんでした。もう一度計算してください。';
+                error.hidden = false;
+                console.error('北半球版の比較表示に失敗しました', cause);
             }
         }
         if (!frame.getAttribute('src')) {
