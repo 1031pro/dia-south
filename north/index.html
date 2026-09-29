@@ -15,6 +15,7 @@
         .grid-item { min-width: 0; }
         @media(max-width: 700px) { .grid-container { grid-template-columns: 1fr; } }
     </style>
+<link rel="stylesheet" href="../fortune-relations.css?v=1">
 </head>
 <body>
     <main class="container">
@@ -37,6 +38,7 @@
                 <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
             </div>
         </div>
+        <section id="annualFortune" aria-label="歳運"></section>
         <div id="northCharts" class="grid-container" style="display:none;">
             <div class="meishiki-container grid-item">
                 <h2>③ソシアルメーター</h2>
@@ -53,10 +55,13 @@
     <script src="kanshi_data.js"></script>
     <script src="meishiki.js?v=svg-20260929"></script>
     <script src="../map-vector.js?v=20260929-client-correction" data-background="life-area-north.svg"></script>
+    <script src="../fortune-relations.js?v=1" data-hemisphere="north"></script>
+
     <script>
         const chartsOnly = new URLSearchParams(location.search).get('charts') === '1';
         if (chartsOnly) {
             document.getElementById('northTables').style.display = 'none';
+            document.getElementById('annualFortune').hidden = true;
             document.getElementById('northCharts').style.display = 'grid';
         }
         function renderNorth(year, month, day, sex) {

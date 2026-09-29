@@ -1,0 +1,10 @@
+#annualFortune {box-sizing:border-box;width:100%;max-width:1200px;margin:20px 0;padding:24px;background:#fffef0;border:2px solid #ffcc66;border-radius:12px;}
+.annual-note {font-size:13px;line-height:1.6;color:#536293;}
+.annual-scroll {overflow-x:auto;}
+.annual-table {border-collapse:collapse;width:100%;font-size:14px;}
+.annual-table th {background:linear-gradient(135deg,#7583c4,#4b5db3);color:white;}
+.annual-table th,.annual-table td {padding:10px 8px;text-align:center;border:1px solid #ffcc66;white-space:nowrap;}
+.annual-table td {background:white;color:#243673;}
+.annual-table .current-year td {background:#fff0bc;font-weight:bold;}
+#daiunTable td:last-child {white-space:normal;min-width:56px;}
+@media(max-width:700px){#annualFortune{padding:12px;}.annual-table{font-size:12px;}.annual-table th,.annual-table td{padding:8px 3px;}.annual-table td:last-child{white-space:normal;min-width:54px;}}
