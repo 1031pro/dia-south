@@ -12,7 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<meta name="robots" content="noindex,nofollow,noarchive"></head>
+<meta name="robots" content="noindex,nofollow,noarchive">
+</head>
 <body>
     <div class="container">
         <h1>南半球版プロファイル鑑定</h1>
@@ -174,6 +175,8 @@
         document.write(`<script src="kanshi_data.js?v=${timestamp}"><\/script>`);
         document.write(`<script src="meishiki.js?v=${timestamp}"><\/script>`);
     </script>
+    <script src="map-vector.js?v=20260929-vector" data-background="life-area-south.svg"></script>
+
     <script>
     // 年・月・日プルダウン生成
     document.addEventListener('DOMContentLoaded', function() {
@@ -334,6 +337,12 @@
             image.src = canvas.toDataURL('image/png');
             image.style.cssText = 'display:block;width:100%;max-width:450px;height:auto;margin:0 auto;';
             clone.querySelectorAll('canvas')[0].replaceWith(image);
+        });
+        clone.querySelectorAll('svg[data-life-map]').forEach(svg => {
+            const image = document.createElement('img');
+            image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(svg));
+            image.style.cssText = 'display:block;width:100%;max-width:450px;height:auto;margin:0 auto;';
+            svg.replaceWith(image);
         });
         clone.removeAttribute('id');
         clone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
