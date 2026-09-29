@@ -38,7 +38,7 @@
             </div>
         </div>
         <section id="annualFortune" aria-label="歳運"></section>
-        <div id="northCharts" class="grid-container" style="display:none;">
+        <div id="northCharts" class="grid-container">
             <div class="meishiki-container grid-item">
                 <h2>③ソシアルメーター</h2>
                 <canvas id="tsuhenChart" width="600" height="600"></canvas>
@@ -50,6 +50,71 @@
                 <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
             </div>
         </div>
+            <div id="actionKeywordsContainer" class="content-box bottom-center" style="display: none;">
+                <h2>⑤行動キーワード</h2>
+                <div class="action-keywords-table-container">
+                    <table id="actionKeywordsTable">
+                        <thead>
+                            <tr>
+                                <th class="corner-cell">
+                                    <div class="corner-content">
+                                        <span class="corner-top">時</span>
+                                        <span class="corner-bottom">あなた</span>
+                                    </div>
+                                </th>
+                                <th class="wood-header">木</th>
+                                <th class="fire-header">火</th>
+                                <th class="earth-header">土</th>
+                                <th class="metal-header">金</th>
+                                <th class="water-header">水</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="wood-header">木</th>
+                                <td>自立<br>独立</td>
+                                <td>未来<br>子供<br>健康</td>
+                                <td>愛・財<br>人脈</td>
+                                <td>仕事</td>
+                                <td>知識<br>親<br>変化</td>
+                            </tr>
+                            <tr>
+                                <th class="fire-header">火</th>
+                                <td>知識<br>親<br>変化</td>
+                                <td>自立<br>独立</td>
+                                <td>未来<br>子供<br>健康</td>
+                                <td>愛・財<br>人脈</td>
+                                <td>仕事</td>
+                            </tr>
+                            <tr>
+                                <th class="earth-header">土</th>
+                                <td>仕事</td>
+                                <td>知識<br>親<br>変化</td>
+                                <td>自立<br>独立</td>
+                                <td>未来<br>子供<br>健康</td>
+                                <td>愛・財<br>人脈</td>
+                            </tr>
+                            <tr>
+                                <th class="metal-header">金</th>
+                                <td>愛・財<br>人脈</td>
+                                <td>仕事</td>
+                                <td>知識<br>親<br>変化</td>
+                                <td>自立<br>独立</td>
+                                <td>未来<br>子供<br>健康</td>
+                            </tr>
+                            <tr>
+                                <th class="water-header">水</th>
+                                <td>未来<br>子供<br>健康</td>
+                                <td>愛・財<br>人脈</td>
+                                <td>仕事</td>
+                                <td>知識<br>親<br>変化</td>
+                                <td>自立<br>独立</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+            </div>
     </main>
     <script src="kanshi_data.js"></script>
     <script src="meishiki.js?v=svg-20260929"></script>
@@ -57,22 +122,14 @@
     <script src="../fortune-relations.js?v=20260930-break" data-hemisphere="north"></script>
 
     <script>
-        const chartsOnly = new URLSearchParams(location.search).get('charts') === '1';
-        if (chartsOnly) {
-            document.getElementById('northTables').style.display = 'none';
-            document.getElementById('annualFortune').hidden = true;
-            document.getElementById('northCharts').style.display = 'grid';
-        }
         function renderNorth(year, month, day, sex) {
             const birthdate = new Date(Date.UTC(year, month - 1, day));
             const chart = new Meishiki(birthdate, null, sex);
             chart.buildMeishiki();
             chart.displayMeishiki();
             displayDaiunTable(chart, birthdate, sex);
-            if (chartsOnly) {
-                drawTsuhenChart(chart);
-                drawKanshiTriangle(chart);
-            }
+            drawTsuhenChart(chart);
+            drawKanshiTriangle(chart);
             resizeFrame();
         }
         function resizeFrame() {
@@ -81,10 +138,12 @@
                 const source=parent.document.querySelector('#resultsContainer > .grid-container');
                 if(source){
                     const layout=parent.getComputedStyle(source);
-                    const grid=document.getElementById(chartsOnly?'northCharts':'northTables');
-                    grid.style.display=layout.display;
-                    grid.style.gridTemplateColumns=layout.gridTemplateColumns;
-                    grid.style.gap=layout.gap;
+                    for(const id of ['northTables','northCharts']) {
+                        const grid=document.getElementById(id);
+                        grid.style.display=layout.display;
+                        grid.style.gridTemplateColumns=layout.gridTemplateColumns;
+                        grid.style.gap=layout.gap;
+                    }
                 }
                 window.frameElement.style.height = Math.ceil(document.querySelector('main').getBoundingClientRect().height + 48) + 'px';
             }
