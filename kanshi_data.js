@@ -3751,7 +3751,8 @@ const kanshiData = {
         '-水': '水の相克'
     },
 }; 
-// 南半球表の番号を維持し、十干は固定、地支だけ6つ進める。
+// 暦計算用の配列位置を維持し、十干は固定、地支だけ6つ進める。
+// 表示番号はgetKanshiNumberで通常の六十干支表から取得する。
 // 蔵干・五行・十二運のマスターは変換後の地支で参照する。
 kanshiData.sixty_kanshi = kanshiData.sixty_kanshi.map(([kan, shi]) => [kan, (shi + 6) % 12]);
 kanshiData.month_kanshi = kanshiData.month_kanshi.map(months => months.map(([kan, shi]) => [kan, (shi + 6) % 12]));

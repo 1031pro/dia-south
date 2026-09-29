@@ -24,7 +24,7 @@ class Meishiki {
     }
 
     // 天中殺（空亡）区分（10区分）
-    static tenchusatsuList = ['辰巳', '寅卯', '子丑', '戌亥', '申酉', '午未'];
+    static tenchusatsuList = ['戌亥', '申酉', '午未', '辰巳', '寅卯', '子丑'];
 
     isSetsuiri(month) {
         // 指定月と生月の大小を先に判定し、同月のときのみ日で比較する（最小限の修正）
@@ -1020,10 +1020,9 @@ function formatShiWithGogyo(shiIndex) {
 
 // 干支番号（1～60）を取得する関数
 function getKanshiNumber(kan, shi) {
-    for (let i = 0; i < kanshiData.sixty_kanshi.length; i++) {
-        if (kanshiData.sixty_kanshi[i][0] === kan && kanshiData.sixty_kanshi[i][1] === shi) {
-            return i + 1;
-        }
+    // 暦計算用の南半球配列の位置ではなく、添付の六十干支表の番号を返す。
+    for (let i = 0; i < 60; i++) {
+        if (i % 10 === kan && i % 12 === shi) return i + 1;
     }
     return '';
 }

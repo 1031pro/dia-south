@@ -1,6 +1,7 @@
 // Keep the background, glyphs and calculated triangle as vectors in the browser.
 (() => {
     const asset = new URL(document.currentScript.dataset.background, location.href);
+    asset.searchParams.set('v', '20260929-client-correction');
     let template;
     let generation = 0;
     window.drawKanshiTriangle = async function (chart) {
