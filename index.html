@@ -91,6 +91,11 @@
                 
             </div>
             
+            <section id="northChartsComparison" style="width:100%;max-width:1200px;" hidden aria-label="北半球版のグラフ比較">
+                <p id="northChartsComparisonError" role="status" hidden></p>
+                <iframe id="northChartsComparisonFrame" title="北半球版のソシアルメーターとライフエリアマップ" style="width:100%;border:0;display:block;min-height:650px;"></iframe>
+            </section>
+
             <!-- ⑤行動キーワード（下部中央） -->
             <div id="actionKeywordsContainer" class="content-box bottom-center" style="display: none;">
                 <h2>⑤行動キーワード</h2>
@@ -290,11 +295,15 @@
     let northComparisonInput;
     function updateNorthComparison(year, month, day, sex) {
         northComparisonInput = [Number(year), Number(month), Number(day), Number(sex)];
-        const section = document.getElementById('northComparison');
-        const frame = document.getElementById('northComparisonFrame');
+        for (const [id, url] of [
+            ['northComparison', 'north/index.html?v=20260929-charts'],
+            ['northChartsComparison', 'north/index.html?charts=1&v=20260929-charts']
+        ]) {
+        const section = document.getElementById(id);
+        const frame = document.getElementById(id + 'Frame');
         section.hidden = false;
         function render() {
-            const error = document.getElementById('northComparisonError');
+            const error = document.getElementById(id + 'Error');
             try {
                 if (typeof frame.contentWindow.renderNorth !== 'function') return;
                 frame.hidden = false;
@@ -310,9 +319,10 @@
         }
         if (!frame.getAttribute('src')) {
             frame.addEventListener('load', render);
-            frame.src = 'north/index.html?v=20260929-layout2';
+            frame.src = url;
         } else {
             render();
+        }
         }
     }
 

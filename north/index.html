@@ -6,6 +6,8 @@
     <meta name="robots" content="noindex,nofollow,noarchive">
     <title>北半球版の比較結果</title>
     <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <style>
         body { margin: 0; padding: 20px 0; }
         .container { width: 100%; max-width: none; padding: 0 12px; box-sizing: border-box; }
@@ -17,7 +19,7 @@
 <body>
     <main class="container">
         <h2>北半球版（比較用）</h2>
-        <div class="grid-container">
+        <div id="northTables" class="grid-container">
             <div class="meishiki-container grid-item">
                 <h2 id="meishikiTitle">①命式</h2>
                 <div id="basicInfo"></div>
@@ -34,16 +36,37 @@
                 <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
             </div>
         </div>
+        <div id="northCharts" class="grid-container" style="display:none;">
+            <div class="meishiki-container grid-item">
+                <h2>③ソシアルメーター</h2>
+                <canvas id="tsuhenChart" width="600" height="600"></canvas>
+                <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+            </div>
+            <div id="triangleContainer" class="daiun-container grid-item">
+                <h2>④ライフエリアマップ</h2>
+                <canvas id="triangleCanvas" width="600" height="600"></canvas>
+                <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
+            </div>
+        </div>
     </main>
     <script src="kanshi_data.js"></script>
     <script src="meishiki.js"></script>
     <script>
+        const chartsOnly = new URLSearchParams(location.search).get('charts') === '1';
+        if (chartsOnly) {
+            document.getElementById('northTables').style.display = 'none';
+            document.getElementById('northCharts').style.display = 'grid';
+        }
         function renderNorth(year, month, day, sex) {
             const birthdate = new Date(Date.UTC(year, month - 1, day));
             const chart = new Meishiki(birthdate, null, sex);
             chart.buildMeishiki();
             chart.displayMeishiki();
             displayDaiunTable(chart, birthdate, sex);
+            if (chartsOnly) {
+                drawTsuhenChart(chart);
+                drawKanshiTriangle(chart);
+            }
             resizeFrame();
         }
         function resizeFrame() {
