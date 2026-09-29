@@ -3,7 +3,7 @@
     const mod = (n, m) => ((n % m) + m) % m;
     const pairs = {
         '支合': [[0,1],[2,11],[3,10],[4,9],[5,8],[6,7]],
-        '六害': [[0,7],[1,6],[2,5],[3,4],[8,11],[9,10]]
+        '害': [[0,7],[1,6],[2,5],[3,4],[8,11],[9,10]]
     };
     function relations(dayStem, dayBranch, stem, branch) {
         const result = [];
@@ -14,7 +14,7 @@
         if (mod(stem-dayStem,10) === 5) result.push('干合');
         if (pairs['支合'].some(([a,b])=>(dayBranch===a&&branch===b)||(dayBranch===b&&branch===a))) result.push('支合');
         if (mod(branch-dayBranch,12) === 6) result.push('七冲');
-        if (pairs['六害'].some(([a,b])=>(dayBranch===a&&branch===b)||(dayBranch===b&&branch===a))) result.push('六害');
+        if (pairs['害'].some(([a,b])=>(dayBranch===a&&branch===b)||(dayBranch===b&&branch===a))) result.push('害');
         return result;
     }
     function years(chart, birthYear, currentYear, south) {
@@ -59,5 +59,9 @@
             [item.year+'年',item.age<0?'出生前':item.age+'歳',kanshiData.kan[item.stem],kanshiData.shi[item.branch],kanshiData.tsuhen[item.star],kanshiData.twelve_fortune[item.fortune],item.relations.join('・')||'—'].forEach(text=>addCell(row,'td',text));
         });
         scroll.appendChild(annual);container.appendChild(scroll);
+        const copyright=document.createElement('div');
+        copyright.className='copyright';
+        copyright.textContent='©Yukari Ikemotoのデザイン帝王学';
+        container.appendChild(copyright);
     };
 })(globalThis);
