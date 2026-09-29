@@ -3,7 +3,9 @@
     const mod = (n, m) => ((n % m) + m) % m;
     const pairs = {
         '支合': [[0,1],[2,11],[3,10],[4,9],[5,8],[6,7]],
-        '害': [[0,7],[1,6],[2,5],[3,4],[8,11],[9,10]]
+        '害': [[0,7],[1,6],[2,5],[3,4],[8,11],[9,10]],
+        // 依頼者の図（S__15360014.jpg）の6組。ほかの関係と重なっても併記する。
+        '破': [[0,9],[1,4],[2,11],[3,6],[5,8],[7,10]]
     };
     function relations(dayStem, dayBranch, stem, branch) {
         const result = [];
@@ -15,6 +17,7 @@
         if (pairs['支合'].some(([a,b])=>(dayBranch===a&&branch===b)||(dayBranch===b&&branch===a))) result.push('支合');
         if (mod(branch-dayBranch,12) === 6) result.push('七冲');
         if (pairs['害'].some(([a,b])=>(dayBranch===a&&branch===b)||(dayBranch===b&&branch===a))) result.push('害');
+        if (pairs['破'].some(([a,b])=>(dayBranch===a&&branch===b)||(dayBranch===b&&branch===a))) result.push('破');
         return result;
     }
     function years(chart, birthYear, currentYear, south) {
@@ -33,6 +36,8 @@
     const addCell=(row,tag,text)=>{const cell=document.createElement(tag);cell.textContent=text;row.appendChild(cell);return cell;};
     root.displayDaiunTable = function(chart,birthdate,sex) {
         previous(chart,birthdate,sex);
+        const subtitle=document.querySelector('#daiunTable h3');
+        if(subtitle) subtitle.textContent=subtitle.textContent.replace(/^②\s*/, '');
         const [dayStem,dayBranch]=[chart.meishiki.tenkan[0],chart.meishiki.chishi[0]];
         const table=document.querySelector('#daiunTable table');
         addCell(table.querySelector('thead tr'),'th','関係').scope='col';
