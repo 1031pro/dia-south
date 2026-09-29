@@ -1319,7 +1319,7 @@ function drawKanshiTriangle(meishiki) {
         // 画像が読み込めなくても三角形コンテナは表示する
         drawTriangleContent();
     };
-    img.src = '60eto3.png';
+    img.src = 'life-area-north.svg';
     
     if (img.complete) {
         img.onload();

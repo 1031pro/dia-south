@@ -1304,29 +1304,6 @@ function drawKanshiTriangle(meishiki) {
         const imageY = (canvas.height - drawHeight) / 2;
         
         ctx.drawImage(img, imageX, imageY, drawWidth, drawHeight);
-        // 背景画像の北半球干支ラベルを、南半球表から描画し直す。
-        // 番号・エリア配置は参考表の番号体系を維持する。
-        ctx.save();
-        ctx.translate(imageX + drawWidth / 2, imageY + drawHeight / 2);
-        ctx.scale(drawWidth / 600, drawHeight / 600);
-        ctx.beginPath();
-        ctx.arc(0, 0, 156, 0, Math.PI * 2);
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 24;
-        ctx.stroke();
-        ctx.font = '8px "Yu Gothic", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#54236d';
-        kanshiData.sixty_kanshi.forEach(([kan, shi], index) => {
-            ctx.save();
-            ctx.rotate((index * 6 + 3) * Math.PI / 180);
-            ctx.fillText(kanshiData.kan[kan], 0, -161);
-            ctx.fillText(kanshiData.shi[shi], 0, -152);
-            ctx.restore();
-        });
-        ctx.restore();
-        
         drawTriangleContent();
     };
     img.onerror = function() {
@@ -1334,7 +1311,7 @@ function drawKanshiTriangle(meishiki) {
         // 画像が読み込めなくても三角形コンテナは表示する
         drawTriangleContent();
     };
-    img.src = '60eto3.png';
+    img.src = 'life-area-south.svg';
     
     if (img.complete) {
         img.onload();

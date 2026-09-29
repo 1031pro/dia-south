@@ -296,8 +296,8 @@
     function updateNorthComparison(year, month, day, sex) {
         northComparisonInput = [Number(year), Number(month), Number(day), Number(sex)];
         for (const [id, url] of [
-            ['northComparison', 'north/index.html?v=20260929-charts'],
-            ['northChartsComparison', 'north/index.html?charts=1&v=20260929-charts']
+            ['northComparison', 'north/index.html?v=20260929-svg'],
+            ['northChartsComparison', 'north/index.html?charts=1&v=20260929-svg']
         ]) {
         const section = document.getElementById(id);
         const frame = document.getElementById(id + 'Frame');
