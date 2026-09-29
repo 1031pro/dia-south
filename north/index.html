@@ -10,10 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <style>
         body { margin: 0; padding: 20px 0; }
-        .container { width: 100%; max-width: none; padding: 0 12px; box-sizing: border-box; }
-        .grid-container { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: auto; }
+        .container { width: 100%; max-width: none; padding: 0; box-sizing: border-box; }
+        .grid-container { grid-template-rows: auto; }
         .grid-item { min-width: 0; }
-        @media(max-width: 700px) { .grid-container { grid-template-columns: 1fr; } }
     </style>
 <link rel="stylesheet" href="../fortune-relations.css?v=1">
 </head>
@@ -78,9 +77,19 @@
         }
         function resizeFrame() {
             if (window.frameElement) {
+                // 親画面と同じ幅の基準で段組みを切り替える。
+                const source=parent.document.querySelector('#resultsContainer > .grid-container');
+                if(source){
+                    const layout=parent.getComputedStyle(source);
+                    const grid=document.getElementById(chartsOnly?'northCharts':'northTables');
+                    grid.style.display=layout.display;
+                    grid.style.gridTemplateColumns=layout.gridTemplateColumns;
+                    grid.style.gap=layout.gap;
+                }
                 window.frameElement.style.height = Math.ceil(document.querySelector('main').getBoundingClientRect().height + 48) + 'px';
             }
         }
+        window.addEventListener('resize', resizeFrame);
         new ResizeObserver(resizeFrame).observe(document.querySelector('main'));
     </script>
 </body>
