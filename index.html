@@ -73,18 +73,18 @@
                 </div>
                 
             </div>
-        <section id="annualFortune" aria-label="歳運"></section>
+        <section id="annualFortune" aria-label="さい運"></section>
             <div class="grid-container" style="grid-template-rows:auto;">
-                <!-- ③ソシアルメーター -->
+                <!-- ④ソシアルメーター -->
                 <div class="meishiki-container grid-item">
-                    <h2>③ソシアルメーター</h2>
+                    <h2>④ソシアルメーター</h2>
                     <canvas id="tsuhenChart" width="600" height="600"></canvas>
                     <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
                 </div>
                 
-                <!-- ④ライフエリアマップ -->
+                <!-- ⑤ライフエリアマップ -->
                 <div id="triangleContainer" class="daiun-container grid-item">
-                    <h2>④ライフエリアマップ</h2>
+                    <h2>⑤ライフエリアマップ</h2>
                     <canvas id="triangleCanvas" width="600" height="600"></canvas>
                     <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
                 </div>
@@ -92,9 +92,9 @@
             </div>
             
 
-            <!-- ⑤行動キーワード（下部中央） -->
+            <!-- ⑥行動キーワード（下部中央） -->
             <div id="actionKeywordsContainer" class="content-box bottom-center" style="display: none;">
-                <h2>⑤行動キーワード</h2>
+                <h2>⑥行動キーワード</h2>
                 <div class="action-keywords-table-container">
                     <table id="actionKeywordsTable">
                         <thead>
@@ -175,7 +175,7 @@
         document.write(`<script src="meishiki.js?v=${timestamp}"><\/script>`);
     </script>
     <script src="map-vector.js?v=20260929-client-correction" data-background="life-area-south.svg"></script>
-    <script src="fortune-relations.js?v=20260930-break" data-hemisphere="south"></script>
+    <script src="fortune-relations.js?v=20260930-labels" data-hemisphere="south"></script>
 
 
     <script>
@@ -257,7 +257,7 @@
         } catch (error) {
         }
         
-        // ③ソシアルメーターの表示（完全に独立）
+        // ④ソシアルメーターの表示（完全に独立）
         try {
             const tsuhenContainer = document.querySelectorAll('.meishiki-container')[1];
             if (tsuhenContainer) {
@@ -268,7 +268,7 @@
         } catch (error) {
         }
         
-        // ④ライフエリアマップの表示（完全に独立）
+        // ⑤ライフエリアマップの表示（完全に独立）
         try {
             const triangleContainer = document.querySelectorAll('.daiun-container')[1];
             if (triangleContainer) {
@@ -282,9 +282,9 @@
         // 比較用の北半球版は別の画面内で元の計算コードを実行する。
         updateNorthComparison(year, month, day, sex);
 
-        // 干支三角形は④ライフエリアマップで描画済み
+        // 干支三角形は⑤ライフエリアマップで描画済み
         
-        // ⑤行動キーワードの表示（完全に独立）
+        // ⑥行動キーワードの表示（完全に独立）
         try {
             const actionKeywordsContainer = document.getElementById('actionKeywordsContainer');
             if (actionKeywordsContainer) {
@@ -300,7 +300,7 @@
     function updateNorthComparison(year, month, day, sex) {
         northComparisonInput = [Number(year), Number(month), Number(day), Number(sex)];
         for (const [id, url] of [
-            ['northComparison', 'north/index.html?v=20260930-all']
+            ['northComparison', 'north/index.html?v=20260930-labels']
         ]) {
         const section = document.getElementById(id);
         const frame = document.getElementById(id + 'Frame');
@@ -422,7 +422,7 @@
                 margin: 0 auto;
             `;
             
-            // 1ページ目（①命式、②大運、③ソシアルメーター）
+            // 1ページ目（①命式、②大運、④ソシアルメーター）
             const page1 = document.createElement('div');
             page1.style.cssText = `
                 width: 190mm;
@@ -476,15 +476,15 @@
                 page1.appendChild(daiunClone);
             }
             
-            // ③ソシアルメーターを1ページ目に追加
+            // ④ソシアルメーターを1ページ目に追加
             const tsuhenContainer = document.getElementById('tsuhenChart').parentElement;
             if (tsuhenContainer) {
                 const tsuhenTitle = document.createElement('h2');
-                tsuhenTitle.textContent = '③ソシアルメーター';
+                tsuhenTitle.textContent = '④ソシアルメーター';
                 tsuhenTitle.style.cssText = 'font-size: 14pt; color: #243673; margin-bottom: 10px;';
                 page1.appendChild(tsuhenTitle);
                 
-                // ③ソシアルメーターをそのままコピー
+                // ④ソシアルメーターをそのままコピー
                 const tsuhenClone = cloneReportSection(tsuhenContainer);
                 tsuhenClone.style.cssText = 'margin-bottom: 15px;';
                 
@@ -497,7 +497,7 @@
                 page1.appendChild(tsuhenClone);
             }
             
-            // 2ページ目（④ライフエリアマップ、⑤行動キーワード）
+            // 2ページ目（⑤ライフエリアマップ、⑥行動キーワード）
             const page2 = document.createElement('div');
             page2.style.cssText = `
                 width: 190mm;
@@ -509,11 +509,11 @@
                 page-break-before: always;
             `;
             
-            // ④ライフエリアマップを2ページ目に追加
+            // ⑤ライフエリアマップを2ページ目に追加
             const triangleContainer = document.getElementById('triangleContainer');
             if (triangleContainer) {
                 const triangleTitle = document.createElement('h2');
-                triangleTitle.textContent = '④ライフエリアマップ';
+                triangleTitle.textContent = '⑤ライフエリアマップ';
                 triangleTitle.style.cssText = 'font-size: 14pt; color: #243673; margin-bottom: 10px;';
                 page2.appendChild(triangleTitle);
                 
@@ -523,7 +523,7 @@
                 page2.appendChild(triangleClone);
             }
             
-            // ⑤行動キーワード表を2ページ目に追加
+            // ⑥行動キーワード表を2ページ目に追加
             const actionKeywordsContainer = document.getElementById('actionKeywordsContainer');
             if (actionKeywordsContainer) {
                 const actionKeywordsClone = actionKeywordsContainer.cloneNode(true);
@@ -531,7 +531,7 @@
                 // 行動キーワード表のタイトルを変更
                 const actionKeywordsTitle = actionKeywordsClone.querySelector('h2');
                 if (actionKeywordsTitle) {
-                    actionKeywordsTitle.textContent = '⑤行動キーワード';
+                    actionKeywordsTitle.textContent = '⑥行動キーワード';
                     actionKeywordsTitle.style.fontSize = '14pt';
                 }
                 page2.appendChild(actionKeywordsClone);
