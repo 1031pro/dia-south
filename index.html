@@ -158,10 +158,6 @@
                 </div>
                 <div class="copyright">©Yukari Ikemotoのデザイン帝王学</div>
             </div>
-        <section id="northComparison" style="width:100%;max-width:1200px;" hidden aria-label="北半球版との比較">
-            <p id="northComparisonError" role="status" hidden></p>
-            <iframe id="northComparisonFrame" title="北半球版の鑑定結果一式" style="width:100%;border:0;display:block;min-height:850px;"></iframe>
-        </section>
         </div>
         
 
@@ -281,7 +277,6 @@
         }
         
         // 比較用の北半球版は別の画面内で元の計算コードを実行する。
-        updateNorthComparison(year, month, day, sex);
 
         // 干支三角形は⑤ライフエリアマップで描画済み
         
@@ -297,39 +292,6 @@
     
 
     
-    let northComparisonInput;
-    function updateNorthComparison(year, month, day, sex) {
-        northComparisonInput = [Number(year), Number(month), Number(day), Number(sex)];
-        for (const [id, url] of [
-            ['northComparison', 'north/index.html?v=20260930-labels']
-        ]) {
-        const section = document.getElementById(id);
-        const frame = document.getElementById(id + 'Frame');
-        section.hidden = false;
-        function render() {
-            const error = document.getElementById(id + 'Error');
-            try {
-                if (typeof frame.contentWindow.renderNorth !== 'function') return;
-                frame.hidden = false;
-                frame.style.display = 'block';
-                frame.contentWindow.renderNorth(...northComparisonInput);
-                error.hidden = true;
-            } catch (cause) {
-                frame.style.display = 'none';
-                error.textContent = '北半球版の比較結果を表示できませんでした。もう一度計算してください。';
-                error.hidden = false;
-                console.error('北半球版の比較表示に失敗しました', cause);
-            }
-        }
-        if (!frame.getAttribute('src')) {
-            frame.addEventListener('load', render);
-            frame.src = url;
-        } else {
-            render();
-        }
-        }
-    }
-
     </script>
 <script src="pdf-report.js?v=20260930"></script>
 </body>
