@@ -51,9 +51,9 @@
         const currentYear=Number(new Intl.DateTimeFormat('en',{year:'numeric',timeZone:'Asia/Tokyo'}).format(new Date()));
         const rows=years(chart,birthdate.getUTCFullYear(),currentYear,south);
         container.replaceChildren();
-        const heading=document.createElement('h2');heading.textContent='③さい運（1年ごとの運勢）';container.appendChild(heading);
+        const heading=document.createElement('h2');heading.textContent='③歳運（1年ごとの運勢）';container.appendChild(heading);
         const note=document.createElement('p');note.className='annual-note';note.textContent='年齢はその年の誕生日に迎える年齢。関係は日柱との比較です。年の干支は立春で切り替わります。';container.appendChild(note);
-        const scroll=document.createElement('div');scroll.className='annual-scroll';scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','12年分のさい運');
+        const scroll=document.createElement('div');scroll.className='annual-scroll';scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','12年分の歳運');
         const annual=document.createElement('table');annual.className='annual-table';
         const head=annual.createTHead().insertRow();
         ['年','年齢','天干','地支','通変星','十二運','関係'].forEach(text=>{addCell(head,'th',text).scope='col';});

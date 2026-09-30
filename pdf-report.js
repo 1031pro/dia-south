@@ -49,7 +49,7 @@
         const direction=document.querySelector('#daiunTable h3').textContent;
         const pages=[
             section('①命式',copyTable('#meishikiTable','meishiki'))+section('②大運',`<p class="note">${escape(direction)}</p>`+copyTable('#daiunTable table','daiun')),
-            section('③さい運（1年ごとの運勢）',`<p class="note">${escape(document.querySelector('.annual-note').textContent)}</p>`+copyTable('#annualFortune table','annual'))+section('④ソシアルメーター',`<img class="social" src="${social}" alt="ソシアルメーター">`),
+            section('③歳運（1年ごとの運勢）',`<p class="note">${escape(document.querySelector('.annual-note').textContent)}</p>`+copyTable('#annualFortune table','annual'))+section('④ソシアルメーター',`<img class="social" src="${social}" alt="ソシアルメーター">`),
             section('⑤ライフエリアマップ',`<img class="map" src="${escape(map)}" alt="ライフエリアマップ">`),
             section('⑥行動キーワード',copyTable('#actionKeywordsTable','keywords'))
         ];
